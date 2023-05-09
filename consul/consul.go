@@ -18,7 +18,6 @@ func NewConsul(addr string) *Consul {
 func (c *Consul) Connect() error {
 	config := &api.Config{
 		Address: c.addr,
-		Scheme:  "http",
 	}
 
 	client, err := api.NewClient(config)
