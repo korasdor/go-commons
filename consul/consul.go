@@ -1,4 +1,4 @@
-package config
+package consul
 
 import (
 	"github.com/hashicorp/consul/api"
@@ -6,22 +6,19 @@ import (
 
 type Consul struct {
 	addr   string
-	scheme string
-
 	client *api.Client
 }
 
-func NewConsul(addr string, schema string) *Consul {
+func NewConsul(addr string) *Consul {
 	return &Consul{
-		addr:   addr,
-		scheme: schema,
+		addr: addr,
 	}
 }
 
 func (c *Consul) Connect() error {
 	config := &api.Config{
 		Address: c.addr,
-		Scheme:  c.scheme,
+		Scheme:  "http",
 	}
 
 	client, err := api.NewClient(config)
